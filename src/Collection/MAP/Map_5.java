@@ -61,7 +61,8 @@ public class Map_5 {
         {
             Map.Entry keyValue = (Entry) itr.next();
             Integer key = (Integer) keyValue.getKey();
-            if(userPass.equals(key)) {
+            if(userPass.equals(key)) //Compares object values : equal , not use == bcz it use Reference variable
+            {
                 System.out.println("Please Find Your Passport details below : ");
                 System.out.println(keyValue.getValue());
                 flag = false;
