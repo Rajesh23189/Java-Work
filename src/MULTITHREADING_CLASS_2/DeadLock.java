@@ -6,9 +6,9 @@ import java.util.Currency;
 
 class Library1 implements Runnable
 {
-    String  res1 = new String("JAVA");
-    String res2 = new String("DSA");
-    String res3 = new String("SPRING_BOOT");
+    String  res1 = "JAVA";
+    String res2 = "DSA";
+    String res3 = "SPRING_BOOT";
 
     @Override
     public void run()
