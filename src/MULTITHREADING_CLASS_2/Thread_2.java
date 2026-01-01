@@ -1,7 +1,7 @@
 package MULTITHREADING_CLASS_2;
 
 
-class MsWord extends Thread
+class  MsWord extends Thread
 {
     @Override
     public void run()
@@ -36,7 +36,7 @@ class MsWord extends Thread
     {
         try
         {
-            for(int  i =0;i<3;i++)
+            for(;;)
             {
                 System.out.println("SpellCjeck....");
                 Thread.sleep(4000);
@@ -51,7 +51,7 @@ class MsWord extends Thread
     {
         try
         {
-            for(int  i =0;i<3;i++)
+            for(;;)
             {
                 System.out.println("autoSaving....");
                 Thread.sleep(4000);
@@ -82,6 +82,8 @@ public class Thread_2 {
          ms2.setDaemon(true);
          ms3.setDaemon(true);
 
+         ms2.setPriority(4);
+         ms3.setPriority(3);
 
          ms1.start();
          ms2.start();
