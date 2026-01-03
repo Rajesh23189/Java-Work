@@ -12,6 +12,7 @@ public class Queue {
         try
         {  if(flag == true)
            {
+               System.out.println("Producer in wait state");
                 wait();
            }
             else {
@@ -36,6 +37,7 @@ public class Queue {
         {
             if(flag == false)
             {
+                System.out.println("Producer in wait state");
                 wait();
             }
             else {
