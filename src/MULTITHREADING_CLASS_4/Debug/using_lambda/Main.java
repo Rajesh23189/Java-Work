@@ -1,4 +1,4 @@
-package Debug.using_lambda;
+package MULTITHREADING_CLASS_4.Debug.using_lambda;
 
 public class Main implements Runnable{
     public static void main(String args[])

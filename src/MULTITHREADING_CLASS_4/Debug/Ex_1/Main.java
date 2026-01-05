@@ -1,6 +1,4 @@
-package Debug.Ex_1;
-
-import java.sql.SQLOutput;
+package MULTITHREADING_CLASS_4.Debug.Ex_1;
 
 public class Main {
 
