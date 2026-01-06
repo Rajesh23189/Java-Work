@@ -30,7 +30,7 @@ public class LunchStream {
         */
 
 
-        // Don't effected original collection
+         // Don't effected original collection
 
         Stream<Integer> streamData1 = list.stream();
         Stream<Integer> sortedData = streamData1.sorted();
