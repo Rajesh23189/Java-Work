@@ -1,0 +1,127 @@
+✅Stream API — Key Points (Must Remember)
+
+Introduced in Java 8
+
+Used to process data, not store data
+
+Works mainly with Collections & Arrays
+
+Uses functional programming style
+
+Supports method chaining
+
+Stream pipeline has 3 parts
+👉 Source → Intermediate → Terminal
+
+Intermediate operations are lazy
+
+Terminal operation triggers execution
+
+Streams are single-use
+
+Original collection does not change
+
+Streams can be sequential or parallel
+
+Supports lambda expressions & method references
+
+filter, map, sorted → return Stream
+
+forEach, collect, count → return result
+
+map() = one-to-one
+flatMap() = one-to-many
+
+Streams internally use iteration, not external loops
+
+Thread-safe by design (no shared mutable state)
+
+🔥 Most Asked Interview Questions (with Short Answers)
+1️⃣ What is Stream API?
+
+Stream API is used to process collections in a functional and declarative way.
+
+2️⃣ Difference between Stream and CoreJava.Collection?
+Stream	      CoreJava.Collection
+Process data	Store data
+Lazy	        Eager
+One-time use	Reusable
+Functional	    OOP
+3️⃣ What are intermediate operations?
+
+Operations that return a Stream and are executed lazily
+Examples: filter(), map(), sorted()
+
+4️⃣ What are terminal operations?
+
+Operations that return a result and start execution
+Examples: forEach(), collect(), count()
+
+5️⃣ Why Stream is lazy?
+
+To improve performance by executing only when needed.
+
+6️⃣ Can we reuse a Stream?
+
+❌ No
+
+stream.forEach(...);
+stream.forEach(...); // IllegalStateException
+
+7️⃣ Difference between map() and flatMap()?
+map()	flatMap()
+One-to-one	One-to-many
+Returns Stream<Stream<T>>	Returns Stream<T>
+8️⃣ What is method chaining?
+
+Calling multiple methods in a single statement where each method returns an object.
+
+9️⃣ Does Stream modify original collection?
+
+❌ No, Streams are immutable
+
+🔟 What is reduce()?
+
+Used to combine stream elements into a single value.
+
+int sum = list.stream().reduce(0, Integer::sum);
+
+1️⃣1️⃣ What is parallelStream?
+
+A stream that processes elements using multiple threads.
+
+1️⃣2️⃣ When NOT to use parallel streams?
+
+Small data
+
+I/O operations
+
+Order-sensitive operations
+
+1️⃣3️⃣ What is Collectors?
+
+Utility class to collect stream results into List, Set, Map
+
+Collectors.toList()
+
+1️⃣4️⃣ Difference between forEach() and forEachOrdered()?
+
+forEach() → order not guaranteed
+
+forEachOrdered() → maintains order
+
+1️⃣5️⃣ What is internal iteration?
+
+Iteration handled by JVM, not by programmer
+
+⭐ Coding Questions Often Asked
+Even numbers from list
+list.stream()
+    .filter(n -> n % 2 == 0)
+    .forEach(System.out::println);
+
+Count elements
+long count = list.stream().count();
+
+Max value
+int max = list.stream().max(Integer::compare).get();
