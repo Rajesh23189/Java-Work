@@ -21,7 +21,7 @@ public class Main implements Runnable{
         th2.setName("Kuheli");
         th2.start();
 
-        //Task Of Main Thread
+        //Task Of Dynamic_Query Thread
         System.out.println("Task Of Thread "+Thread.currentThread().getName());
     }
     @Override

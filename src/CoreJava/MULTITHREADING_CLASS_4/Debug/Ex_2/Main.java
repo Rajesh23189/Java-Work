@@ -3,7 +3,7 @@ package CoreJava.MULTITHREADING_CLASS_4.Debug.Ex_2;
 public class Main  extends Thread{
     public static void main(String args[])
     {
-        System.out.println("Main Thread Started");
+        System.out.println("Dynamic_Query Thread Started");
          Main th1 = new Main();
         Main th2 = new Main();
 

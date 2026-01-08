@@ -30,14 +30,14 @@ public class Ex_Hand_3{
     public static void main(String args[])
     {
         try{
-            System.out.println("Main Connection Establist");
+            System.out.println("Dynamic_Query Connection Establist");
             Alpha1 ap = new Alpha1();
             ap.calc();
         }
         catch (ArithmeticException e){
-        System.out.println("Execption Caught At Main Method");
+        System.out.println("Execption Caught At Dynamic_Query Method");
         }
 
-        System.out.println("Main Connection Terminated");
+        System.out.println("Dynamic_Query Connection Terminated");
     }
 }

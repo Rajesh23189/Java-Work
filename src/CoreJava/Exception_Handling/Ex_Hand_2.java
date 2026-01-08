@@ -28,7 +28,7 @@ class Beta
 public class Ex_Hand_2 {
     public static void main(String args[])
     {
-        System.out.println("Main Connection Establist");
+        System.out.println("Dynamic_Query Connection Establist");
         // if Exception Occur Then JVM Chake   calc then disp then main stack Exception Handling or not
         Beta b = new Beta();
         b.disp();
@@ -36,6 +36,6 @@ public class Ex_Hand_2 {
         // if Exception Occur Then JVM Chake Only  calc and main stack Exception Handling or not
         Alpha a = new Alpha();
         a.calc();
-        System.out.println("Main Connection Terminated");
+        System.out.println("Dynamic_Query Connection Terminated");
     }
 }
