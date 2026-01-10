@@ -7,6 +7,11 @@ public class Customer {
     private String customer_ph_no;
 
 
+    public Customer()
+    {
+
+    }
+
     public Customer(int customer_id,String customer_name,String customer_ph_no)
     {
         this.customer_id = customer_id;
@@ -27,7 +32,6 @@ public class Customer {
     public String getcustomer_ph_no(){
         return customer_ph_no;
     }
-
 
     public void setCustomer_id(int customer_id)
     {

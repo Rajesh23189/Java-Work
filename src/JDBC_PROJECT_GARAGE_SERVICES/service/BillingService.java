@@ -8,17 +8,23 @@ public class BillingService {
 
        public CustomerService customerService = new CustomerService();
 
+       public  VehicleServices vehicleServices = new VehicleServices();
+
        public  InvoiceService invoiceService = new InvoiceService();
+
+
 
 
 
        /** Create Invoice **/
        public void createInvoice(int customerId, int vehicleId,List<Integer> servicesIds) throws SQLException
        {
+           String services_id = "";
            for(int servicesId : servicesIds)
            {
-               invoiceService.addInvoice(new Invoices(0,customerId,vehicleId,servicesId));
+             services_id += servicesId;
            }
+           invoiceService.addInvoice(new Invoices(0,customerId,vehicleId,Integer.parseInt(services_id)));
            System.out.println("Invoice Create Successfully...");
        }
 

@@ -29,7 +29,7 @@ public class CustomerService {
                     Connection connection = DbConfig.getConnection();
 
                     Statement statement = connection.createStatement();
-                    ResultSet rs = statement.executeQuery("SELECT *FROM customer");
+                    ResultSet rs = statement.executeQuery("SELECT *FROM Customer");
 
                     while(rs.next()){
                         list.add(new Customer(
@@ -41,4 +41,24 @@ public class CustomerService {
                     }
                     return list;
        }
+
+    public  Customer customerDetails(String phone_number) throws SQLException{
+
+           Customer customer = new Customer();
+
+
+           Connection connection = DbConfig.getConnection();
+           Statement statement = connection.createStatement();
+           ResultSet rs = statement.executeQuery("SELECT customer_id, customer_name, customer_number FROM Customer WHERE customer_number ="+ phone_number);
+           while (rs.next())
+           {
+               customer  = new Customer(
+                       rs.getInt("customer_id"),
+                       rs.getString("customer_name"),
+                       rs.getString("customer_number"));
+           }
+
+
+        return customer;
+    }
 }

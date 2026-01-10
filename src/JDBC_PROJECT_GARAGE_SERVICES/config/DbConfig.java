@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DbConfig {
 
-    private static final String  URL = "jdbc:mysql://localhost:3306/GARAGE_PROJECT";
+    private static final String  URL = "jdbc:mysql://localhost:3306/garage";
     private static final String USERNAME  = "root";
     private static final String PASSWORD = "Rajesh@289";
 
