@@ -1,8 +1,7 @@
 package JDBC_PROJECT_GARAGE_SERVICES.service;
 
-import JDBC_PROJECT_GARAGE_SERVICES.configg.DbConfig;
+import JDBC_PROJECT_GARAGE_SERVICES.config.DbConfig;
 import JDBC_PROJECT_GARAGE_SERVICES.entity.Invoices;
-import com.mysql.cj.jdbc.ConnectionImpl;
 
 import java.sql.*;
 import java.util.ArrayList;

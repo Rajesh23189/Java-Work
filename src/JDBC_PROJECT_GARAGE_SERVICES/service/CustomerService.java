@@ -1,6 +1,6 @@
 package JDBC_PROJECT_GARAGE_SERVICES.service;
 
-import JDBC_PROJECT_GARAGE_SERVICES.configg.DbConfig;
+import JDBC_PROJECT_GARAGE_SERVICES.config.DbConfig;
 import JDBC_PROJECT_GARAGE_SERVICES.entity.Customer;
 
 import java.sql.*;

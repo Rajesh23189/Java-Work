@@ -1,4 +1,4 @@
-package JDBC_PROJECT_GARAGE_SERVICES.configg;
+package JDBC_PROJECT_GARAGE_SERVICES.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
