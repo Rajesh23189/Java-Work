@@ -25,5 +25,20 @@ public class VehicleServices {
         connnection.close();
     }
 
+    public Vehicles VehiclesDetails(int customer_id) throws  SQLException
+    {
+        Vehicles vehicles = new Vehicles();
+        Connection connection = DbConfig.getConnection();
+        Statement statement  = connection.createStatement();
+        ResultSet rs = statement.executeQuery("SELECT vehicle_id,customer_id,number_plate,model FROM Vehicles WHERE customer_id ="+customer_id);
+         while (rs.next()){
+             vehicles = new Vehicles(rs.getInt("vehicle_id"),
+                                      rs.getString("number_plate"),
+                                       rs.getString("model")
+                                     );
+         }
+         return  vehicles;
+    }
+
 
 }

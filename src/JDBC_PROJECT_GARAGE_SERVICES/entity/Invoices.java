@@ -4,15 +4,15 @@ public class Invoices {
     private int Invoices_id;
     private int customer_id;
     private int  vehicle_id;
-    private int service_id;
+    private double cost;
 
 
-    public Invoices(int Invoices_id,int customer_id,int vehicle_id,int service_id)
+    public Invoices(int Invoices_id,int customer_id,int vehicle_id,double cost)
     {
         this.Invoices_id = Invoices_id;
         this.customer_id = customer_id;
         this.vehicle_id = vehicle_id;
-        this.service_id = service_id;
+        this.cost = cost;
     }
 
 
@@ -25,8 +25,8 @@ public class Invoices {
     public int getVehicle_id() {
         return vehicle_id;
     }
-    public int getService_id() {
-        return service_id;
+    public double getcost() {
+        return cost;
     }
 
 
@@ -34,20 +34,20 @@ public class Invoices {
         this.Invoices_id = Invoices_id;
     }
     public void setCustomer_id(int customer_id) {
+
         this.customer_id = customer_id;
     }
     public void setVehicle_id(int vehicle_id) {
+
         this.vehicle_id = vehicle_id;
     }
-    public void setService_id(int service_id) {
-        this.service_id = service_id;
-    }
+
 
     @Override
     public String toString() {
         return "Invoices_id=" + Invoices_id +
                 ", customer_id=" + customer_id +
                 ", vehicle_id=" + vehicle_id +
-                ", service_id=" + service_id;
+                ", cost =" + cost;
     }
 }

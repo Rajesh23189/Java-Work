@@ -3,7 +3,9 @@ package JDBC_PROJECT_GARAGE_SERVICES;
 import JDBC_PROJECT_GARAGE_SERVICES.entity.Customer;
 import JDBC_PROJECT_GARAGE_SERVICES.entity.Vehicles;
 import JDBC_PROJECT_GARAGE_SERVICES.service.BillingService;
+import JDBC_PROJECT_GARAGE_SERVICES.service.CustomerService;
 import JDBC_PROJECT_GARAGE_SERVICES.service.ServicesProvide;
+import JDBC_PROJECT_GARAGE_SERVICES.service.VehicleServices;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class App {
         while (true)
         {
             System.out.println("================MENU================");
-            System.out.println("1. ADD Customer With Vehicle \n2. Generate Invoice \n3. Show Invoice \n4. Show All Services\n5.exit");
+            System.out.println("1.ADD Customer With Vehicle   \n2.Enter Services Which You Want   \n3.Generate Invoice  \n4.Show Invoice \n5.Show All Services  \n6.exit");
 
             System.out.print("Enter Choice  => ");
             int choice  = sc.nextInt();
@@ -50,7 +52,6 @@ public class App {
 
                      //Add Vehicle
                      System.out.print("Enter Your Number Plate => ");
-                     sc.nextLine();
                      String number_plate = sc.nextLine();
                      System.out.print("Enter Model => ");
                      String model = sc.nextLine();
@@ -66,38 +67,78 @@ public class App {
 
 
                  case 2 :{
-                         System.out.print("Enter Customer Id => ");
-                         int customer_id  = sc.nextInt();
-                         System.out.print("Enter vehicle Id => ");
-                         int vehicle_id  = sc.nextInt();
 
-                         // use for Garage Owner which services customer want
-                         System.out.print("Enter How Many Services You => ");
-                         int  n = sc.nextInt();
-                         List<Integer> services_id  = new ArrayList<>();
-                         for(int  i = 1;i<=n;i++)
-                         {
-                             System.out.print("Enter Service Id => ");
-                             int id = sc.nextInt();
-                             services_id.add(id);
+                     ServicesProvide.showAllServices();
+
+
+                     /**Get Customer Details**/
+                     sc.nextLine();
+                     String  phone_number;
+                     while (true)
+                     {
+                         System.out.print("Enter Phone Number(Must Be 10 Digit) => ");
+                         phone_number = sc.nextLine();
+                         if(phone_number.length() == 10)
+                             break;
+                         else {
+                             System.out.print("Enter Valid 10 Digit phone number\n");
                          }
-                         try
-                         {
-                             billingService.createInvoice(customer_id,vehicle_id,services_id);
+                     }
+                     Customer customerDetails;
+                     customerDetails = new CustomerService().customerDetails(phone_number);
+                     int customer_id = customerDetails.getCustomer_id();
+
+
+
+
+                     //Add Services
+                     System.out.print("Enter How Many Services You => ");
+                     int  n = sc.nextInt();
+                     for(int  i = 1;i<=n;i++)
+                     {
+                         System.out.print("Enter Service Id => ");
+                         int service_id = sc.nextInt();
+                         ServicesProvide.addServices(customer_id,service_id);
+                     }
+                     break;
+                 }
+
+
+                 case 3:
+                 {
+
+                     /**Get Customer Details**/
+                     sc.nextLine();
+                     System.out.print("Enter Phone Number(Must Be 10 Digit) => ");
+                     String  phone_number;
+                     while (true)
+                     {
+                         phone_number = sc.nextLine();
+                         if(phone_number.length() == 10)
+                             break;
+                         else {
+                             System.out.print("Enter Valid 10 Digit phone number\n");
+                             System.out.print("Enter Phone Number(Must Be 10 Digit) => ");
                          }
-                         catch (SQLException e)
-                         {
-                             e.printStackTrace();
-                         }
+                     }
+                     Customer customerDetails;
+                     customerDetails = new CustomerService().customerDetails(phone_number);
+                     int customer_id = customerDetails.getCustomer_id();
 
-                         break;
-                       }
+                     /**Get Vehicle Id**/
 
+                     VehicleServices vehicleServices = new VehicleServices();
+                     Vehicles vehicles =  vehicleServices.VehiclesDetails(customer_id);
+                     int vehicle_id = vehicles.getVehicle_id();
 
+                     List<Integer> all_services  = CustomerService.get_all_service_for_particular_customer(customer_id);
+                     billingService.createInvoice(all_services,customer_id,vehicle_id);
 
+                     break;
 
+                 }
 
-                 case 3:{
+                 case 4:{
                      try{
                          billingService.showAllInvoices();
                        }
@@ -111,13 +152,13 @@ public class App {
 
 
 
-                 case 4:{
+                 case 5:{
                      ServicesProvide.showAllServices();
                      break;
                  }
 
 
-                 case 5:{
+                 case 6:{
                       System.exit(0);
                         }
 

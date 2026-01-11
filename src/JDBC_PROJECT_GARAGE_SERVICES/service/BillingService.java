@@ -1,7 +1,8 @@
 package JDBC_PROJECT_GARAGE_SERVICES.service;
+import JDBC_PROJECT_GARAGE_SERVICES.config.DbConfig;
 import JDBC_PROJECT_GARAGE_SERVICES.entity.Invoices;
 
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class BillingService {
@@ -17,14 +18,23 @@ public class BillingService {
 
 
        /** Create Invoice **/
-       public void createInvoice(int customerId, int vehicleId,List<Integer> servicesIds) throws SQLException
+       public void createInvoice(List<Integer> servicesIds,int customerId,int vehicleId) throws SQLException
        {
-           String services_id = "";
-           for(int servicesId : servicesIds)
-           {
-             services_id += servicesId;
+           double Total_cost = 0;
+
+           System.out.println("Hi");
+           Connection connection = DbConfig.getConnection();
+           PreparedStatement ps = connection.prepareStatement(
+                   "SELECT cost FROM Services WHERE service_id = ?");
+
+           for (int ele : servicesIds) {
+               ps.setInt(1, ele);
+               ResultSet rs = ps.executeQuery();
+               if (rs.next()) {
+                   Total_cost += rs.getDouble("cost");
+               }
            }
-           invoiceService.addInvoice(new Invoices(0,customerId,vehicleId,Integer.parseInt(services_id)));
+           invoiceService.addInvoice(new Invoices(0,customerId,vehicleId,Total_cost));
            System.out.println("Invoice Create Successfully...");
        }
 

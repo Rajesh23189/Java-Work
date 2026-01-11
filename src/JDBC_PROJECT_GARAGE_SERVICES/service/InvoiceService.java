@@ -9,22 +9,25 @@ import java.util.List;
 
 
 
-public class InvoiceService {
+public class InvoiceService{
 
     public void addInvoice(Invoices invoice) throws SQLException
     {
-        Connection connnection = DbConfig.getConnection();
 
+        try(Connection connnection = DbConfig.getConnection();
         PreparedStatement ps = connnection.prepareStatement(
-                "INSERT INTO customer(customer_id,vehicle_id,service_id) VALUE(?,?,?)");
-
-        ps.setInt(1,invoice.getCustomer_id());
-        ps.setInt(2,invoice.getVehicle_id());
-        ps.setInt(3,invoice.getService_id());
-        ps.executeUpdate();
-        ps.close();
-        connnection.close();
+                "INSERT INTO Invoices(customer_id,vehicle_id,cost) VALUES(?,?,?)");) {
+            ps.setInt(1, invoice.getCustomer_id());
+            ps.setInt(2, invoice.getVehicle_id());
+            ps.setDouble(3, invoice.getcost());
+            ps.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
     }
+
 
     public List<Invoices> getAllInvoices() throws SQLException{
         List<Invoices> list  = new ArrayList<>();
