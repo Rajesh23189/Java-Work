@@ -25,6 +25,9 @@ public class Array_1 {
         for(int i = 0;i<marks.length;i++){
             System.out.println("Student "+i+1+" Marks is : "+marks[i]);
         }
+
+        for(int ele : marks)
+            System.out.println(ele);
     }
 }
 
