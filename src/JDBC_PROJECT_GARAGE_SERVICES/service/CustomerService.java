@@ -1,0 +1,88 @@
+package JDBC_PROJECT_GARAGE_SERVICES.service;
+
+import JDBC_PROJECT_GARAGE_SERVICES.config.DbConfig;
+import JDBC_PROJECT_GARAGE_SERVICES.entity.Customer;
+
+import java.sql.*;
+import java.util.ArrayList;
+import  java.util.List;
+
+public class CustomerService {
+
+
+       public void addCustomer(Customer customer) throws SQLException
+       {
+           Connection connnection = DbConfig.getConnection();
+
+           PreparedStatement ps = connnection.prepareStatement(
+                   "INSERT INTO customer(customer_name,customer_number) VALUE(?,?)");
+
+           ps.setString(1,customer.getcustomer_name());
+           ps.setString(2,customer.getcustomer_ph_no());
+           ps.executeUpdate();
+           ps.close();
+           connnection.close();
+       }
+
+
+
+       public List<Customer> getAllCustomers() throws SQLException{
+                    List<Customer> list = new ArrayList<>();
+                    Connection connection = DbConfig.getConnection();
+
+                    Statement statement = connection.createStatement();
+                    ResultSet rs = statement.executeQuery("SELECT *FROM Customer");
+
+                    while(rs.next()){
+                        list.add(new Customer(
+                                 rs.getInt("customer_id"),
+                                 rs.getString("customer_name"),
+                                 rs.getString("customer_name")
+                                              )
+                                 );
+                    }
+                    return list;
+       }
+
+
+
+    public  Customer customerDetails(String phone_number) throws SQLException{
+
+           Customer customer = new Customer();
+
+
+           Connection connection = DbConfig.getConnection();
+           Statement statement = connection.createStatement();
+           ResultSet rs = statement.executeQuery("SELECT customer_id, customer_name, customer_number FROM Customer WHERE customer_number ="+phone_number);
+           while (rs.next())
+           {
+               customer  = new Customer(
+                       rs.getInt("customer_id"),
+                       rs.getString("customer_name"),
+                       rs.getString("customer_number"));
+           }
+
+        return customer;
+
+    }
+
+    public static List<Integer> get_all_service_for_particular_customer(int customer_id) throws  SQLException
+    {
+        List<Integer> services_id_list = new ArrayList<>();
+
+
+        Connection connection  = DbConfig.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("SELECT service_id FROM CustomerServices WHERE customer_id ="+customer_id);
+        while (rs.next()){
+            services_id_list.add(rs.getInt("service_id"));
+        }
+        return  services_id_list;
+    }
+
+
+
+
+
+
+}
